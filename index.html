@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> IT'S SKINCARE TIME </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .ad{
+            z-index: 1;
+        }
+        #button{
+            cursor:pointer;
+        }
+        #moving {
+            width: 350px;
+            position: absolute;
+        }
+        #text{
+            position: absolute;
+            top: 50px;
+            left: 800px;
+        }
+        .char {
+            position: absolute;
+            top: 50px;
+            left: 200px;
+        }
+        .tool {
+            position: absolute;
+            top: 520px;
+            left: 00px;
+            z-index: 1;
+        }
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 10%;
+        }
+    </style>
+    <script>
+        var pics = ["images/after5.png", "images/after4.png", "images/after3.png", "images/after2.png", "images/after1.png"]
+
+        function appear() {
+            if (pics.length > 0) {
+                var div = $("div");
+                div.animate({left: '550px', top: '380px'}, {duration: 2000});
+                //div.animate({})
+                div.animate({left: '100px', top: '520px'}, {duration: 2000});
+                setTimeout(() => {
+                    var img = new Image();
+                    img.src = pics.pop();
+                    img.className = "char"
+                    img.width = "750"
+                    document.getElementById('body').appendChild(img);
+                    console.log("add")
+                }, 2000);
+            } else {
+                var elements = document.getElementsByClassName("char");
+                while (elements[0]) {
+                    elements[0].parentNode.removeChild(elements[0]);
+                }
+                document.getElementById("text").remove();
+                document.getElementById("button").remove();
+                document.getElementById("shape").remove();
+                var img = new Image();
+                img.src = "images/Free.png";
+                img.className = "ad";
+                img.width = "1500";
+                document.getElementById('body').appendChild(img);
+                //img.animate({left: '0px', top: '0px'}, {duration: 2000});
+            }
+            //E0D8E5
+        }
+
+    </script>
+
+</head>
+<body id = "body" style="background-color:#E0D8E5;" >
+<audio id="myAudio">
+     <source src="sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+<img src="images/dryskin.png" id="dryskin" class="char" width="750">
+<img src="images/skincaretime.png" id="text" width="350">
+<img src="images/moisturizer.png" onclick="appear()" id="button" class="tool" width="200">
+<div id ="moving" class="tool">
+    <img src="images/cottonpad.png" id = "shape"width="100px">
+</div>
+
+
+</body>
+</html>
